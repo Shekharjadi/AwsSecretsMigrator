@@ -1,8 +1,108 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "AWS Secrets Migrator";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container mt-5">
+
+    <!-- 🔹 HERO SECTION -->
+    <div class="row align-items-center mb-5">
+        <div class="col-md-7">
+            <h1 class="display-5 fw-bold text-primary">
+                AWS Secrets Migrator
+            </h1>
+            <p class="lead mt-3">
+                Securely migrate, manage, and preview application secrets across
+                <strong>DEV / QA / UAT / PROD</strong> environments using
+                <strong>AWS Secrets Manager</strong>.
+            </p>
+
+            <p class="text-muted">
+                This tool helps developers eliminate hard-coded secrets, centralize
+                sensitive configuration, and safely consume secrets at runtime.
+            </p>
+
+            <div class="mt-4">
+                <a asp-controller="Secrets" asp-action="Index"
+                   class="btn btn-success btn-lg me-3">
+                    🚀 Migrate Secrets
+                </a>
+
+                <a asp-controller="SecretsPreview" asp-action="Index"
+                   class="btn btn-outline-primary btn-lg">
+                    🔐 Preview Secrets
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-5 text-center">
+            <img src="https://cdn-icons-png.flaticon.com/512/3064/3064197.png"
+                 class="img-fluid"
+                 style="max-height:260px"
+                 alt="AWS Security" />
+        </div>
+    </div>
+
+    <!-- 🔹 FEATURES SECTION -->
+    <div class="row text-center g-4">
+        <div class="col-md-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h5 class="card-title text-success">🔒 Secure Storage</h5>
+                    <p class="card-text">
+                        Store application secrets securely in AWS Secrets Manager
+                        instead of appsettings.json or source code.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h5 class="card-title text-primary">📦 Multi-Environment</h5>
+                    <p class="card-text">
+                        Easily manage secrets across multiple environments like
+                        Development, QA, UAT, and Production.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h5 class="card-title text-warning">👀 Live Preview</h5>
+                    <p class="card-text">
+                        View and validate stored secrets directly from AWS with a
+                        read-only, user-friendly preview interface.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 🔹 HOW IT WORKS -->
+    <div class="mt-5">
+        <h3 class="fw-bold text-center mb-4">⚙️ How It Works</h3>
+
+        <div class="row">
+            <div class="col-md-3 text-center">
+                <h5>1️⃣ Upload</h5>
+                <p class="text-muted">Upload secrets from TXT / JSON files</p>
+            </div>
+            <div class="col-md-3 text-center">
+                <h5>2️⃣ Validate</h5>
+                <p class="text-muted">Edit and validate secrets before migration</p>
+            </div>
+            <div class="col-md-3 text-center">
+                <h5>3️⃣ Migrate</h5>
+                <p class="text-muted">Push secrets securely to AWS</p>
+            </div>
+            <div class="col-md-3 text-center">
+                <h5>4️⃣ Consume</h5>
+                <p class="text-muted">Load secrets dynamically in your apps</p>
+            </div>
+        </div>
+    </div>
+
 </div>

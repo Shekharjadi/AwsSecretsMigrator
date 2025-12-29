@@ -20,3 +20,54 @@ html {
 body {
   margin-bottom: 60px;
 }
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+}
+/* ===============================
+   TOASTR CUSTOM STYLES
+   =============================== */
+
+#toast-container > div {
+    opacity: 1 !important;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    padding: 16px 20px;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+/* Success */
+.toast-success {
+    background-color: #198754 !important; /* Bootstrap green */
+    color: #ffffff !important;
+}
+
+/* Error */
+.toast-error {
+    background-color: #dc3545 !important; /* Bootstrap red */
+    color: #ffffff !important;
+}
+
+/* Info */
+.toast-info {
+    background-color: #0dcaf0 !important; /* Bootstrap info */
+    color: #000000 !important;
+}
+
+/* Warning */
+.toast-warning {
+    background-color: #ffc107 !important; /* Bootstrap warning */
+    color: #000000 !important;
+}
+
+/* Title text */
+.toast-title {
+    font-weight: 700;
+}
+
+/* Message text */
+.toast-message {
+    font-size: 14px;
+}

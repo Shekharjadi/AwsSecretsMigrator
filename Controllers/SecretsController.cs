@@ -19,24 +19,24 @@ namespace AwsSecretsMigrator.Controllers
         {
             return View(new SecretsViewModel());
         }
-[HttpPost]
-public IActionResult LoadFile(IFormFile secretsFile, string environment, string secretName)
-{
-    if (secretsFile == null || secretsFile.Length == 0)
-    {
-        ModelState.AddModelError("", "Please upload a valid TXT file");
-        return View("Index", new SecretsViewModel());
-    }
+        [HttpPost]
+        public IActionResult LoadFile(IFormFile secretsFile, string environment, string secretName)
+        {
+            if (secretsFile == null || secretsFile.Length == 0)
+            {
+                ModelState.AddModelError("", "Please upload a valid TXT file");
+                return View("Index", new SecretsViewModel());
+            }
 
-    var secrets = TxtSecretReader.ReadFromStream(secretsFile.OpenReadStream());
+            var secrets = TxtSecretReader.ReadFromStream(secretsFile.OpenReadStream());
 
-    return View("Index", new SecretsViewModel
-    {
-        Environment = environment,
-        SecretName = secretName,
-        Secrets = secrets
-    });
-}
+            return View("Index", new SecretsViewModel
+            {
+                Environment = environment,
+                SecretName = secretName,
+                Secrets = secrets
+            });
+        }
 
 
         [HttpPost]
@@ -46,8 +46,12 @@ public IActionResult LoadFile(IFormFile secretsFile, string environment, string 
 
             await _aws.SaveAsync(secretName, model.Secrets);
 
-            ViewBag.Message = "Secrets migrated successfully to AWS Secrets Manager!";
-            return View("Index", model);
+            TempData["ToastMessage"] = "Secrets migrated successfully to AWS!";
+            TempData["ToastType"] = "success";
+            return RedirectToAction("Index");
+
         }
+
+
     }
 }

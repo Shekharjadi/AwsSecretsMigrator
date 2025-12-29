@@ -14,6 +14,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<AwsSecretsService>();
 
 
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
