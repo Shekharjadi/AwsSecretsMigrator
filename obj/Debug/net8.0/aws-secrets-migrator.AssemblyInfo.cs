@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("aws-secrets-migrator")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+687f504d0502cf40c15063c054d35f54d9bc5e1d")]
 [assembly: System.Reflection.AssemblyProductAttribute("aws-secrets-migrator")]
 [assembly: System.Reflection.AssemblyTitleAttribute("aws-secrets-migrator")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

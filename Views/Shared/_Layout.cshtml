@@ -4,53 +4,105 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - aws_secrets_migrator</title>
+
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/aws_secrets_migrator.styles.css" asp-append-version="true" />
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
 
-
+    <!-- Toastr CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
 </head>
+
 <body>
+    <!-- ================= NAVBAR ================= -->
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">aws_secrets_migrator</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+        <nav class="navbar navbar-expand-lg navbar-dark shadow"
+     style="background: linear-gradient(90deg, #0d6efd, #6610f2);">
+    
+    <div class="container-fluid">
+
+        <!-- Brand -->
+        <a class="navbar-brand fw-bold text-white"
+           asp-controller="Home"
+           asp-action="Index">
+            🔐 AWS Secrets Migrator
+        </a>
+
+        <!-- Mobile Toggle -->
+        <button class="navbar-toggler border-0"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#mainNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Links -->
+        <div class="collapse navbar-collapse" id="mainNavbar">
+            <ul class="navbar-nav ms-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link px-3 text-white fw-semibold"
+                       asp-controller="Secrets"
+                       asp-action="Index">
+                        🚀 Migrate Secrets
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link px-3 text-white fw-semibold"
+                       asp-controller="SecretsPreview"
+                       asp-action="Index">
+                        👁 Preview Secrets
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
     </header>
+
+    <!-- ================= BODY ================= -->
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
+    <!-- ================= FOOTER ================= -->
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2025 - aws_secrets_migrator - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2025 - aws_secrets_migrator
         </div>
     </footer>
+
+    <!-- ================= SCRIPTS (ORDER MATTERS!) ================= -->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
+    <!-- Toastr JS MUST come BEFORE usage -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    <script>
+        toastr.options = {
+            closeButton: true,
+            progressBar: true,
+            positionClass: "toast-top-right",
+            timeOut: 4000
+        };
+    </script>
+
+    @if (TempData["ToastMessage"] != null)
+    {
+        <script>
+            toastr['@TempData["ToastType"]'](
+                @Html.Raw(System.Text.Json.JsonSerializer.Serialize(TempData["ToastMessage"]))
+            );
+        </script>
+    }
+
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
